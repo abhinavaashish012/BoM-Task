@@ -38,7 +38,6 @@ public class Cycle
         this.requiredchains = requiredchains;
         this.requiredcrankSet = requiredcrankSet;
         this.requiredpaddles = requiredpaddles;
-        System.out.println("Cycle created..........");
     }
 
     //setters and getters for the member variables

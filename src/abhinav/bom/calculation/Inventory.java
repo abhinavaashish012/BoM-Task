@@ -9,8 +9,8 @@ import java.util.Map;
 
 public class Inventory
 {
-    Map<String,Integer> invList;
-    Map<String,Integer> reqList;
+    HashMap<String,Integer> invList;
+    HashMap<String,Integer> reqList;
 
     private int seats;
     private int frames;
@@ -139,6 +139,31 @@ public class Inventory
     Cycle c = new Cycle(1,2,2,1,1,1,2,
             1,2,2,1,1,2);
 
+    private HashMap<String,Integer> generateList(Inventory inventory, int cycles) {
+
+        HashMap<String,Integer> myList = new HashMap<>();
+
+        myList.put("seats",this.getSeats()*cycles);
+        myList.put("frames",this.getFrames()*cycles);
+        myList.put("brakeSet",this.getBrakeSet()*cycles);
+        myList.put("brakePaddles",this.getBrakePaddles()*cycles);
+        myList.put("brakeCables",this.getBrakeCables()*cycles);
+        myList.put("levers",this.getLevers()*cycles);
+        myList.put("brakeShoes",this.getBrakeShoes()*cycles);
+        myList.put("handleBars",this.getHandleBars()*cycles);
+        myList.put("wheels",this.getWheels()*cycles);
+        myList.put("tires",this.getTires()*cycles);
+        myList.put("chains",this.getChains()*cycles);
+        myList.put("crankSet",this.getCrankSet()*cycles);
+        myList.put("paddles",this.getPaddles()*cycles);
+
+        //System.out.println("The total available inventory is as follows : ");
+        for(Map.Entry<String,Integer> e : myList.entrySet())
+            System.out.println(e);
+        System.out.println("##########################################################");
+        return myList;
+    }
+
 
     //default inventory values provided in the pdf
     public void getDefaultInventory()
@@ -157,145 +182,212 @@ public class Inventory
         this.setCrankSet(50);
         this.setPaddles(150);
 
-
-        invList = new HashMap<>();
-        invList.put("seats",this.getSeats());
-        invList.put("frames",this.getFrames());
-        invList.put("brakeSet",this.getBrakeSet());
-        invList.put("brakePaddles",this.getBrakePaddles());
-        invList.put("brakeCables",this.getBrakeCables());
-        invList.put("levers",this.getLevers());
-        invList.put("brakeShoes",this.getBrakeShoes());
-        invList.put("handleBars",this.getHandleBars());
-        invList.put("wheels",this.getWheels());
-        invList.put("tires",this.getTires());
-        invList.put("chains",this.getChains());
-        invList.put("crankSet",this.getCrankSet());
-        invList.put("paddles",this.getPaddles());
-
         System.out.println("The total available inventory is as follows : ");
-        for(Map.Entry<String,Integer> e : invList.entrySet())
-            System.out.println(e);
+        invList = generateList(this,1);
+
     }
+
 
     // to enter the inventory values during runtime
-    public void enterMaterialsAvailable() throws IOException {
+    public void enterMaterialsAvailable() throws IOException
+    {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+        String userInput="";
+        int userIntInput;
+
         System.out.print("Enter the number of seats available : ");
-        int x= Integer.parseInt(br.readLine());
-        this.setSeats(x);
+        userInput=br.readLine();
+        if(Validator.validate(userInput)) {
+            userIntInput = Integer.parseInt(userInput);
+            this.setSeats(userIntInput);
+        }
+        else
+            this.setSeats(50);
+
+
 
         System.out.print("Enter the number of frames available : ");
-        x= Integer.parseInt(br.readLine());
-        this.setFrames(x);
+        userInput=br.readLine();
+        if(Validator.validate(userInput)) {
+            userIntInput = Integer.parseInt(userInput);
+            this.setFrames(userIntInput);
+        }
+        else
+            this.setFrames(80);
+
 
         System.out.print("Enter the number of brakeSet available : ");
-        x= Integer.parseInt(br.readLine());
-        this.setBrakeSet(x);
+        userInput=br.readLine();
+        if(Validator.validate(userInput)) {
+            userIntInput = Integer.parseInt(userInput);
+            this.setBrakeSet(userIntInput);
+        }
+        else
+            this.setBrakeSet(25);
+
+
 
         System.out.print("Enter the number of brakePaddles available : ");
-        x= Integer.parseInt(br.readLine());
-        this.setBrakePaddles(x);
+        userInput=br.readLine();
+        if(Validator.validate(userInput)) {
+            userIntInput = Integer.parseInt(userInput);
+            this.setBrakePaddles(userIntInput);
+        }
+        else
+            this.setBrakePaddles(100);
+
+
 
         System.out.print("Enter the number of brakeCables available : ");
-        x= Integer.parseInt(br.readLine());
-        this.setBrakeCables(x);
+        userInput=br.readLine();
+        if(Validator.validate(userInput)) {
+            userIntInput = Integer.parseInt(userInput);
+            this.setBrakeCables(userIntInput);
+        }
+        else
+            this.setBrakeCables(75);
+
+
 
         System.out.print("Enter the number of levers available : ");
-        x= Integer.parseInt(br.readLine());
-        this.setLevers(x);
+        userInput=br.readLine();
+        if(Validator.validate(userInput)) {
+            userIntInput = Integer.parseInt(userInput);
+            this.setLevers(userIntInput);
+        }
+        else
+            this.setLevers(60);
+
+
 
         System.out.print("Enter the number of brakeShoes available : ");
-        x= Integer.parseInt(br.readLine());
-        this.setBrakeShoes(x);
+        userInput=br.readLine();
+        if(Validator.validate(userInput)) {
+            userIntInput = Integer.parseInt(userInput);
+            this.setBrakeShoes(userIntInput);
+        }
+        else
+            this.setBrakeShoes(150);
+
+
 
         System.out.print("Enter the number of handleBars available : ");
-        x= Integer.parseInt(br.readLine());
-        this.setHandleBars(x);
+        userInput=br.readLine();
+        if(Validator.validate(userInput)) {
+            userIntInput = Integer.parseInt(userInput);
+            this.setHandleBars(userIntInput);
+        }
+        else
+            this.setHandleBars(100);
+
+
 
         System.out.print("Enter the number of wheels available : ");
-        x= Integer.parseInt(br.readLine());
-        this.setWheels(x);
+        userInput=br.readLine();
+        if(Validator.validate(userInput)) {
+            userIntInput = Integer.parseInt(userInput);
+            this.setWheels(userIntInput);
+        }
+        else
+            this.setWheels(60);
+
+
 
         System.out.print("Enter the number of tires available : ");
-        x= Integer.parseInt(br.readLine());
-        this.setTires(x);
+        userInput=br.readLine();
+        if(Validator.validate(userInput)) {
+            userIntInput = Integer.parseInt(userInput);
+            this.setTires(userIntInput);
+        }
+        else
+            this.setTires(80);
+
+
 
         System.out.print("Enter the number of chains available : ");
-        x= Integer.parseInt(br.readLine());
-        this.setChains(x);
+        userInput=br.readLine();
+        if(Validator.validate(userInput)) {
+            userIntInput = Integer.parseInt(userInput);
+            this.setChains(userIntInput);
+        }
+        else
+            this.setChains(100);
+
+
 
         System.out.print("Enter the number of crankSet available : ");
-        x= Integer.parseInt(br.readLine());
-        this.setCrankSet(x);
+        userInput=br.readLine();
+        if(Validator.validate(userInput)) {
+            userIntInput = Integer.parseInt(userInput);
+            this.setCrankSet(userIntInput);
+        }
+        else
+            this.setCrankSet(50);
+
+
 
         System.out.print("Enter the number of paddles available : ");
-        x= Integer.parseInt(br.readLine());
-        this.setPaddles(x);
-
-
-        invList = new HashMap<>();
-        invList.put("seats",this.getSeats());
-        invList.put("frames",this.getFrames());
-        invList.put("brakeSet",this.getBrakeSet());
-        invList.put("brakePaddles",this.getBrakePaddles());
-        invList.put("brakeCables",this.getBrakeCables());
-        invList.put("levers",this.getLevers());
-        invList.put("brakeShoes",this.getBrakeShoes());
-        invList.put("handleBars",this.getHandleBars());
-        invList.put("wheels",this.getWheels());
-        invList.put("tires",this.getTires());
-        invList.put("chains",this.getChains());
-        invList.put("crankSet",this.getCrankSet());
-        invList.put("paddles",this.getPaddles());
+        userInput=br.readLine();
+        if(Validator.validate(userInput)) {
+            userIntInput = Integer.parseInt(userInput);
+            this.setPaddles(userIntInput);
+        }
+        else
+            this.setPaddles(150);
 
         System.out.println("The total available inventory is as follows : ");
-        for(Map.Entry<String,Integer> e : invList.entrySet())
-            System.out.println(e);
+        invList = generateList(this,1);
+
     }
+
+
 
 
     //calculating the number of each component required
     public void generateMaterialsRequired(int noOfCycles)
     {
-        reqList = new HashMap<>();
-        reqList.put("seats",noOfCycles*c.getRequiredseats());
-        reqList.put("frames",noOfCycles*c.getRequiredframes());
-        reqList.put("brakeSet",noOfCycles*c.getRequiredbrakeSet());
-        reqList.put("brakePaddles",noOfCycles*c.getRequiredbrakePaddles());
-        reqList.put("brakeCables",noOfCycles*c.getRequiredbrakeCables());
-        reqList.put("levers",noOfCycles*c.getRequiredlevers());
-        reqList.put("brakeShoes",noOfCycles*c.getRequiredbrakeShoes());
-        reqList.put("handleBars",noOfCycles*c.getRequiredhandleBars());
-        reqList.put("wheels",noOfCycles*c.getRequiredwheels());
-        reqList.put("tires",noOfCycles*c.getRequiredtires());
-        reqList.put("chains",noOfCycles*c.getRequiredchains());
-        reqList.put("crankSet",noOfCycles*c.getRequiredcrankSet());
-        reqList.put("paddles",noOfCycles*c.getRequiredpaddles());
+        reqList= new HashMap<String,Integer>();
+
+        reqList.put("seats",c.getRequiredseats()*noOfCycles);
+        reqList.put("frames",c.getRequiredframes()*noOfCycles);
+        reqList.put("brakeSet",c.getRequiredbrakeSet()*noOfCycles);
+        reqList.put("brakePaddles",c.getRequiredbrakePaddles()*noOfCycles);
+        reqList.put("brakeCables",c.getRequiredbrakeCables()*noOfCycles);
+        reqList.put("levers",c.getRequiredlevers()*noOfCycles);
+        reqList.put("brakeShoes",c.getRequiredbrakeShoes()*noOfCycles);
+        reqList.put("handleBars",c.getRequiredhandleBars()*noOfCycles);
+        reqList.put("wheels",c.getRequiredwheels()*noOfCycles);
+        reqList.put("tires",c.getRequiredtires()*noOfCycles);
+        reqList.put("chains",c.getRequiredchains()*noOfCycles);
+        reqList.put("crankSet",c.getRequiredcrankSet()*noOfCycles);
+        reqList.put("paddles",c.getRequiredpaddles()*noOfCycles);
+
 
         System.out.println("The required inventory is as follows : ");
         for(Map.Entry<String,Integer> e : reqList.entrySet())
             System.out.println(e);
+        System.out.println("##########################################################");
     }
 
     //calculating the extra components needed
     public void calculateNetMaterialsRequired()
     {
-        Iterator<Map.Entry<String, Integer>> itr1 =invList.entrySet().iterator();
-        Iterator<Map.Entry<String, Integer>> itr2 =reqList.entrySet().iterator();
+        Iterator<Map.Entry<String, Integer>> itr1 =this.invList.entrySet().iterator();
+        Iterator<Map.Entry<String, Integer>> itr2 =this.reqList.entrySet().iterator();
 
         System.out.println("The extra materials required are as follows: ");
         while (itr1.hasNext() && itr2.hasNext())
         {
-            Map.Entry avlblItem = (Map.Entry)itr1.next();
+            Map.Entry<String, Integer> avlblItem = itr1.next();
             int avlblVal = (int)avlblItem.getValue();
 
-            Map.Entry reqItem = (Map.Entry)itr2.next();
+            Map.Entry<String, Integer> reqItem = itr2.next();
             int reqVal = (int)reqItem.getValue();
 
             if(reqVal-avlblVal>0)
                 System.out.println(reqItem.getKey()+ " = "+(reqVal-avlblVal));
         }
+        System.out.println("##########################################################");
     }
 }
