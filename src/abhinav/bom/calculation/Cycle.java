@@ -16,9 +16,6 @@ public class Cycle
     private int requiredcrankSet;
     private int requiredpaddles;
 
-    // no argument constructor
-    public Cycle() {
-    }
 
     //argument constructor for Cycle
     public Cycle(int requiredseats, int requiredframes, int requiredbrakeSet, int requiredbrakePaddles, int requiredbrakeCables,

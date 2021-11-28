@@ -11,22 +11,25 @@ public class Validator {
         if(input==null || input.trim().isEmpty())
             return false;
 
+
         //checking if the string has alphabets and special characters or not
-        boolean checkForLettersAndDigits= checkForIntegervalue(input);
+        boolean checkForLettersAndDigits= checkForIntegerValue(input);
         if(!checkForLettersAndDigits)
             return false;
+
 
         //checking if the input is double or not
         double doubleInput=Double.parseDouble(input);
         if(Math.floor(doubleInput)!=Math.ceil(doubleInput))
             return false;
 
+
         //checking if the input is -ve and for overflow
         int intInput=Integer.parseInt(input);
         return intInput > 0 && intInput < Integer.MAX_VALUE;
     }
 
-    public static boolean checkForIntegervalue(String input)
+    public static boolean checkForIntegerValue(String input)
     {
         Pattern onlyDigits = Pattern.compile("[^0-9]");//checking if it contains characters other than digit
         Matcher digitMatcher = onlyDigits.matcher(input);

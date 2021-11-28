@@ -1,7 +1,6 @@
 package abhinav.bom.calculation;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Application
@@ -9,15 +8,18 @@ public class Application
     public static void main(String[] args) throws Exception{
         Inventory inventory = new Inventory();
 
+        //showing options to user
         System.out.println("Press the key according to options given\n1 . To proceed with available Inventory \n" +
                 "2 . To enter Inventory and proceed");
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        String userInput="";
-        int userChoice;
-        int noOfCycles;
+        String userInput;   // to capture user-input from the keyboard for the components
+        int userChoice;        // to convert the captured user input into its corresponding integer value
+        int noOfCycles;        // to capture the number of cycles
 
+
+        //capturing user choice until a valid value is obtained
         do {
             System.out.print("Your option : ");
             userInput=br.readLine();
@@ -38,6 +40,8 @@ public class Application
         }while(!Validator.validate(userInput));
 
 
+
+        //capturing the number of cycles until a valid number is entered
         do {
             System.out.print("Enter the number of cycles to manufacture : ");
             userInput=br.readLine();
@@ -46,7 +50,9 @@ public class Application
                 inventory.generateMaterialsRequired(noOfCycles); //calculating the number of each component required
             }
         }while(!Validator.validate(userInput));
-        inventory.calculateNetMaterialsRequired();  //calculating the extra components that needs to be purchased.
+
+        //calculating the extra components that needs to be purchased
+        inventory.calculateNetMaterialsRequired();
     }
 
 }

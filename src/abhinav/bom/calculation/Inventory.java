@@ -9,9 +9,11 @@ import java.util.Map;
 
 public class Inventory
 {
-    HashMap<String,Integer> invList;
-    HashMap<String,Integer> reqList;
+    HashMap<String,Integer> invList;  //map to contain the list of currently available items
+    HashMap<String,Integer> reqList;  //map to calculate the list of extra required items
 
+
+    //components of the cycle
     private int seats;
     private int frames;
     private int brakeSet;
@@ -25,6 +27,7 @@ public class Inventory
     private int chains;
     private int crankSet;
     private int paddles;
+
 
 
     //setters for the member variables
@@ -135,7 +138,7 @@ public class Inventory
     }
 
 
-    //creating cycle object with deafult parameters
+    //creating cycle object with default parameters
     Cycle c = new Cycle(1,2,2,1,1,1,2,
             1,2,2,1,1,2);
 
@@ -143,24 +146,23 @@ public class Inventory
 
         HashMap<String,Integer> myList = new HashMap<>();
 
-        myList.put("seats",this.getSeats()*cycles);
-        myList.put("frames",this.getFrames()*cycles);
-        myList.put("brakeSet",this.getBrakeSet()*cycles);
-        myList.put("brakePaddles",this.getBrakePaddles()*cycles);
-        myList.put("brakeCables",this.getBrakeCables()*cycles);
-        myList.put("levers",this.getLevers()*cycles);
-        myList.put("brakeShoes",this.getBrakeShoes()*cycles);
-        myList.put("handleBars",this.getHandleBars()*cycles);
-        myList.put("wheels",this.getWheels()*cycles);
-        myList.put("tires",this.getTires()*cycles);
-        myList.put("chains",this.getChains()*cycles);
-        myList.put("crankSet",this.getCrankSet()*cycles);
-        myList.put("paddles",this.getPaddles()*cycles);
+        myList.put("seats",inventory.getSeats()*cycles);
+        myList.put("frames",inventory.getFrames()*cycles);
+        myList.put("brakeSet",inventory.getBrakeSet()*cycles);
+        myList.put("brakePaddles",inventory.getBrakePaddles()*cycles);
+        myList.put("brakeCables",inventory.getBrakeCables()*cycles);
+        myList.put("levers",inventory.getLevers()*cycles);
+        myList.put("brakeShoes",inventory.getBrakeShoes()*cycles);
+        myList.put("handleBars",inventory.getHandleBars()*cycles);
+        myList.put("wheels",inventory.getWheels()*cycles);
+        myList.put("tires",inventory.getTires()*cycles);
+        myList.put("chains",inventory.getChains()*cycles);
+        myList.put("crankSet",inventory.getCrankSet()*cycles);
+        myList.put("paddles",inventory.getPaddles()*cycles);
 
-        //System.out.println("The total available inventory is as follows : ");
         for(Map.Entry<String,Integer> e : myList.entrySet())
             System.out.println(e);
-        System.out.println("##########################################################");
+        System.out.println("##########################################################\n");
         return myList;
     }
 
@@ -181,8 +183,9 @@ public class Inventory
         this.setChains(100);
         this.setCrankSet(50);
         this.setPaddles(150);
-
-        System.out.println("The total available inventory is as follows : ");
+        this.setBrakeSet(this.getTotalBrakeSets(this.getBrakePaddles(),this.getBrakeCables(),this.getLevers(),this.getBrakeShoes()));
+        //System.out.println("***********total brake Sets: "+ this.getBrakeSet());
+        System.out.println("The total AVAILABLE INVENTORY is as follows : ");
         invList = generateList(this,1);
 
     }
@@ -193,8 +196,8 @@ public class Inventory
     {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        String userInput="";
-        int userIntInput;
+        String userInput;        // to capture user-input from the keyboard for the components
+        int userIntInput;           // to convert the captured user input into its corresponding integer value
 
         System.out.print("Enter the number of seats available : ");
         userInput=br.readLine();
@@ -203,7 +206,7 @@ public class Inventory
             this.setSeats(userIntInput);
         }
         else
-            this.setSeats(50);
+            this.setSeats(50); //if invalid input is entered it will take the value specified in pdf
 
 
 
@@ -214,7 +217,7 @@ public class Inventory
             this.setFrames(userIntInput);
         }
         else
-            this.setFrames(80);
+            this.setFrames(80); //if invalid input is entered it will take the value specified in pdf
 
 
         System.out.print("Enter the number of brakeSet available : ");
@@ -224,7 +227,7 @@ public class Inventory
             this.setBrakeSet(userIntInput);
         }
         else
-            this.setBrakeSet(25);
+            this.setBrakeSet(25); //if invalid input is entered it will take the value specified in pdf
 
 
 
@@ -235,7 +238,7 @@ public class Inventory
             this.setBrakePaddles(userIntInput);
         }
         else
-            this.setBrakePaddles(100);
+            this.setBrakePaddles(100); //if invalid input is entered it will take the value specified in pdf
 
 
 
@@ -246,7 +249,7 @@ public class Inventory
             this.setBrakeCables(userIntInput);
         }
         else
-            this.setBrakeCables(75);
+            this.setBrakeCables(75); //if invalid input is entered it will take the value specified in pdf
 
 
 
@@ -257,7 +260,7 @@ public class Inventory
             this.setLevers(userIntInput);
         }
         else
-            this.setLevers(60);
+            this.setLevers(60);        //if invalid input is entered it will take the value specified in pdf
 
 
 
@@ -268,7 +271,7 @@ public class Inventory
             this.setBrakeShoes(userIntInput);
         }
         else
-            this.setBrakeShoes(150);
+            this.setBrakeShoes(150);        //if invalid input is entered it will take the value specified in pdf
 
 
 
@@ -279,7 +282,7 @@ public class Inventory
             this.setHandleBars(userIntInput);
         }
         else
-            this.setHandleBars(100);
+            this.setHandleBars(100);        //if invalid input is entered it will take the value specified in pdf
 
 
 
@@ -290,7 +293,7 @@ public class Inventory
             this.setWheels(userIntInput);
         }
         else
-            this.setWheels(60);
+            this.setWheels(60);        //if invalid input is entered it will take the value specified in pdf
 
 
 
@@ -301,7 +304,7 @@ public class Inventory
             this.setTires(userIntInput);
         }
         else
-            this.setTires(80);
+            this.setTires(80);        //if invalid input is entered it will take the value specified in pdf
 
 
 
@@ -312,7 +315,7 @@ public class Inventory
             this.setChains(userIntInput);
         }
         else
-            this.setChains(100);
+            this.setChains(100);        //if invalid input is entered it will take the value specified in pdf
 
 
 
@@ -323,7 +326,7 @@ public class Inventory
             this.setCrankSet(userIntInput);
         }
         else
-            this.setCrankSet(50);
+            this.setCrankSet(50);        //if invalid input is entered it will take the value specified in pdf
 
 
 
@@ -334,13 +337,14 @@ public class Inventory
             this.setPaddles(userIntInput);
         }
         else
-            this.setPaddles(150);
+            this.setPaddles(150);        //if invalid input is entered it will take the value specified in pdf
 
+        this.setBrakeSet(this.getTotalBrakeSets(this.getBrakePaddles(),this.getBrakeCables(),this.getLevers(),this.getBrakeShoes()));
+        //System.out.println("***********total brake Sets: "+ this.getBrakeSet());
         System.out.println("The total available inventory is as follows : ");
         invList = generateList(this,1);
 
     }
-
 
 
 
@@ -380,14 +384,31 @@ public class Inventory
         while (itr1.hasNext() && itr2.hasNext())
         {
             Map.Entry<String, Integer> avlblItem = itr1.next();
-            int avlblVal = (int)avlblItem.getValue();
+            int avlblVal = avlblItem.getValue();
 
             Map.Entry<String, Integer> reqItem = itr2.next();
-            int reqVal = (int)reqItem.getValue();
+            int reqVal = reqItem.getValue();
 
             if(reqVal-avlblVal>0)
                 System.out.println(reqItem.getKey()+ " = "+(reqVal-avlblVal));
         }
         System.out.println("##########################################################");
     }
+
+    public int getTotalBrakeSets(int brakepaddle, int brakecables, int levers, int brakeshoes)
+    {
+        int extraBrakeSets=Math.min(Math.min(Math.min(brakepaddle,brakecables),levers),brakeshoes/2);
+
+        //after making the brakesets the components will be consumed
+        //so the remaining components are as follows
+        this.setBrakePaddles(this.getBrakePaddles()-extraBrakeSets);
+        this.setBrakeCables(this.getBrakeCables()-extraBrakeSets);
+        this.setLevers(this.getLevers()-extraBrakeSets);
+        this.setBrakeShoes(this.getBrakeShoes()-extraBrakeSets*2);
+
+        //total calculated brakesets
+        return this.getBrakeSet()+extraBrakeSets;
+
+    }
+
 }
