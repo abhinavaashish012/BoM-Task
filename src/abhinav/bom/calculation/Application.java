@@ -16,10 +16,10 @@ public class Application
         switch(c)
         {
             case 1:
-                i.getDefaultInventory();
+                i.getDefaultInventory(); // option to proceed with the default inventory values in the pdf
                 break;
             case 2:
-                i.enterMaterialsAvailable();
+                i.enterMaterialsAvailable();// option to enter inventory values during runtime
                 break;
             default:
                 System.out.println("Enter the valid value.");
@@ -27,14 +27,12 @@ public class Application
                 break;
         }
 
-
-
         System.out.print("Enter the number of cycles to manufacture : ");
-        int noOfCycles= Integer.parseInt(br.readLine());
+        int noOfCycles= Integer.parseInt(br.readLine());  //taking input for number of cycles to manufacture
         System.out.println("\n");
-        i.generateMaterialsRequired(noOfCycles);
+        i.generateMaterialsRequired(noOfCycles);  //calculating the number of each component required
 
-        i.calculateNetMaterialsRequired();
+        i.calculateNetMaterialsRequired();  //calculating the extra components that needs to be purchased.
     }
 
 }
