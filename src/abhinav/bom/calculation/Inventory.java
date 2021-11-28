@@ -167,7 +167,7 @@ public class Inventory
 
         Iterator<Map.Entry<String, Integer>> itr2 =reqList.entrySet().iterator();
 
-        System.out.println("The extra materials reequired are as follows: ");
+        System.out.println("The extra materials required are as follows: ");
 
         while (itr1.hasNext() && itr2.hasNext()) {
             Map.Entry avlblItem = (Map.Entry)itr1.next();
@@ -176,6 +176,7 @@ public class Inventory
             Map.Entry reqItem = (Map.Entry)itr2.next();
             int reqVal = (int)reqItem.getValue();
 
+            if(reqVal-avlblVal>0)
             System.out.println(reqItem.getKey()+ " = "+(reqVal-avlblVal));
 
         }
